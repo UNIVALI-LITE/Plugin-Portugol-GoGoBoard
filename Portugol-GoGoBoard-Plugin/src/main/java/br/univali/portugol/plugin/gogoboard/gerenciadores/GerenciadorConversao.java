@@ -2,13 +2,13 @@ package br.univali.portugol.plugin.gogoboard.gerenciadores;
 
 import br.univali.portugol.nucleo.ErroCompilacao;
 import br.univali.portugol.nucleo.Portugol;
-import br.univali.portugol.nucleo.Programa;
 import br.univali.portugol.nucleo.analise.ResultadoAnalise;
 import br.univali.portugol.nucleo.asa.ASAPrograma;
 import br.univali.portugol.nucleo.asa.ExcecaoVisitaASA;
 import br.univali.portugol.nucleo.asa.TrechoCodigoFonte;
 import br.univali.portugol.nucleo.bibliotecas.base.ErroExecucaoBiblioteca;
 import br.univali.portugol.nucleo.mensagens.ErroSemantico;
+import br.univali.portugol.nucleo.programa.Programa;
 import br.univali.portugol.plugin.gogoboard.GoGoBoardPlugin;
 import br.univali.portugol.plugin.gogoboard.conversor.AnalisadorASA;
 import br.univali.portugol.plugin.gogoboard.conversor.ConversorByteCode;
