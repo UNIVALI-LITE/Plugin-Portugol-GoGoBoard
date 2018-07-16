@@ -28,7 +28,8 @@ public final class GoGoBoardPlugin extends Plugin {
 
     @Override
     public VisaoPlugin getVisao() {
-        throw new UnsupportedOperationException("O plugin ainda não possui tela para docar na interface.");
+        //criar uma visão de configuração se necessário
+        return null;
     }
 
     @Override
