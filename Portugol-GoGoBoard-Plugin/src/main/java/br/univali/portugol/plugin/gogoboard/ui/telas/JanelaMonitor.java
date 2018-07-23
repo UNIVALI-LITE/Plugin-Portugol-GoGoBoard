@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
 
 /**
  * Classe da janela do monitor de recursos da GoGo Board.
@@ -216,32 +217,72 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
     /**
      * Método para criar a thread de atualização de tela.
      */
+    private class progressBar implements Runnable {
+
+        final int num;
+        final Component component;
+        public progressBar(int num, Component component) {
+            this.num = num;
+            this.component = component;
+        }
+
+        @Override
+        public void run() {
+            try {
+                JProgressBar pb = (JProgressBar) component;
+                int valor = dispositivoGoGo.getValorSensor(num, false);
+                pb.setValue(valor);
+                pb.setString(String.valueOf(valor));
+            } catch (ErroExecucaoBiblioteca ex) {
+                Logger.getLogger(JanelaMonitor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
     public void criarThread() {
         threadAtualizaTela = new Thread(new Runnable() {
             @Override
             public void run() {
-                labelGoGo.setIcon(iconeGoGoConectata);
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        labelGoGo.setIcon(iconeGoGoConectata);
+                    }
+                });
                 while (atualizar && dispositivoGoGo.isConectado()) {
                     try {
                         dispositivoGoGo.atualizarComponetes();
                         int i = 0;
                         for (Component component : painelSensor.getComponents()) {
                             if (component instanceof JProgressBar) {
-                                JProgressBar pb = (JProgressBar) component;
-                                int valor = dispositivoGoGo.getValorSensor(i, false);
-                                pb.setValue(valor);
-                                pb.setString(String.valueOf(valor));
+                                SwingUtilities.invokeLater(new progressBar(i, component));
                                 i++;
                             }
                         }
-                        labelIR.setText("Código  = " + dispositivoGoGo.getInfravermelho().getValor(false));
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    labelIR.setText("Código  = " + dispositivoGoGo.getInfravermelho().getValor(false));
+                                } catch (ErroExecucaoBiblioteca ex) {
+                                    Logger.getLogger(JanelaMonitor.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        });
+                        
                         Thread.sleep(100);
                     } catch (ErroExecucaoBiblioteca | InterruptedException ex) {
                         Logger.getLogger(JanelaMonitor.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 zerarBarraSensores();
-                labelGoGo.setIcon(iconeGoGoDesconectata);
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        labelGoGo.setIcon(iconeGoGoDesconectata);
+                    }
+                });
             }
         });
     }
