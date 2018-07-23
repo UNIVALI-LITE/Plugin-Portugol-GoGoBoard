@@ -4,6 +4,7 @@ import br.univali.portugol.nucleo.bibliotecas.base.ErroExecucaoBiblioteca;
 import br.univali.portugol.plugin.gogoboard.componetes.DispositivoGoGo;
 import br.univali.portugol.plugin.gogoboard.componetes.Motor;
 import br.univali.portugol.plugin.gogoboard.componetes.MotorServo;
+import br.univali.portugol.plugin.gogoboard.util.JTextFieldLimit;
 import br.univali.ps.ui.swing.ColorController;
 import br.univali.ps.ui.swing.Themeable;
 import br.univali.ps.ui.swing.weblaf.WeblafUtils;
@@ -72,7 +73,7 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         this.iconeMotorDireita_sel_lig = getIcone("direita_sel_lig");
         this.iconeGoGoConectata = getIcone("comGoGo");
         this.iconeGoGoDesconectata = getIcone("semGoGo");
-        this.iconeLed_on = getIcone("led_off");
+        this.iconeLed_on = getIcone("led_on");
         this.iconeLed_off = getIcone("led_off");
     }
 
@@ -444,7 +445,6 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
 
         progressBarSensor1.setMaximum(1024);
         progressBarSensor1.setOrientation(1);
-        progressBarSensor1.setBorder(null);
         progressBarSensor1.setBorderPainted(false);
         progressBarSensor1.setEnabled(false);
         progressBarSensor1.setFocusable(false);
@@ -457,7 +457,6 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         progressBarSensor2.setForeground(new java.awt.Color(153, 153, 255));
         progressBarSensor2.setMaximum(1024);
         progressBarSensor2.setOrientation(1);
-        progressBarSensor2.setBorder(null);
         progressBarSensor2.setEnabled(false);
         progressBarSensor2.setFocusable(false);
         progressBarSensor2.setName(""); // NOI18N
@@ -468,7 +467,6 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         progressBarSensor3.setForeground(new java.awt.Color(153, 153, 255));
         progressBarSensor3.setMaximum(1024);
         progressBarSensor3.setOrientation(1);
-        progressBarSensor3.setBorder(null);
         progressBarSensor3.setEnabled(false);
         progressBarSensor3.setFocusable(false);
         progressBarSensor3.setName(""); // NOI18N
@@ -479,7 +477,6 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         progressBarSensor4.setForeground(new java.awt.Color(153, 153, 255));
         progressBarSensor4.setMaximum(1024);
         progressBarSensor4.setOrientation(1);
-        progressBarSensor4.setBorder(null);
         progressBarSensor4.setEnabled(false);
         progressBarSensor4.setFocusable(false);
         progressBarSensor4.setName(""); // NOI18N
@@ -490,7 +487,6 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         progressBarSensor5.setForeground(new java.awt.Color(153, 153, 255));
         progressBarSensor5.setMaximum(1024);
         progressBarSensor5.setOrientation(1);
-        progressBarSensor5.setBorder(null);
         progressBarSensor5.setEnabled(false);
         progressBarSensor5.setFocusable(false);
         progressBarSensor5.setName(""); // NOI18N
@@ -501,7 +497,6 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         progressBarSensor6.setForeground(new java.awt.Color(153, 153, 255));
         progressBarSensor6.setMaximum(1024);
         progressBarSensor6.setOrientation(1);
-        progressBarSensor6.setBorder(null);
         progressBarSensor6.setEnabled(false);
         progressBarSensor6.setFocusable(false);
         progressBarSensor6.setName(""); // NOI18N
@@ -512,7 +507,6 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         progressBarSensor7.setForeground(new java.awt.Color(153, 153, 255));
         progressBarSensor7.setMaximum(1024);
         progressBarSensor7.setOrientation(1);
-        progressBarSensor7.setBorder(null);
         progressBarSensor7.setEnabled(false);
         progressBarSensor7.setFocusable(false);
         progressBarSensor7.setName(""); // NOI18N
@@ -523,7 +517,6 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         progressBarSensor8.setForeground(new java.awt.Color(153, 153, 255));
         progressBarSensor8.setMaximum(1024);
         progressBarSensor8.setOrientation(1);
-        progressBarSensor8.setBorder(null);
         progressBarSensor8.setEnabled(false);
         progressBarSensor8.setFocusable(false);
         progressBarSensor8.setName(""); // NOI18N
@@ -828,8 +821,7 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
                 .addGroup(painelMotorDCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelMotorDCLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(sliderForcaMotor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(sliderForcaMotor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelMotorDCLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(painelMotorDCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -839,8 +831,8 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(separadorForcaMotor, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(8, 8, 8)
-                        .addComponent(labelSetForcaMotor)
-                        .addContainerGap())))
+                        .addComponent(labelSetForcaMotor)))
+                .addContainerGap())
         );
 
         painelTabMotor.addTab("      Motor DC      ", painelMotorDC);
@@ -1047,7 +1039,7 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         labelIconeIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/univali/portugol/plugin/gogoboard/imagens/monitor/controle_remoto.png"))); // NOI18N
         labelIconeIR.setToolTipText("");
 
-        textFieldSetDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        textFieldSetDisplay.setDocument(new JTextFieldLimit(4));
         textFieldSetDisplay.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textFieldSetDisplay.setText("GoGo");
         textFieldSetDisplay.setToolTipText("");
@@ -1055,7 +1047,6 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         textFieldSetDisplay.setDrawFocus(false);
         textFieldSetDisplay.setDrawShade(false);
         textFieldSetDisplay.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
-        textFieldSetDisplay.setSelectionColor(new java.awt.Color(0, 153, 153));
         textFieldSetDisplay.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 textFieldSetDisplayKeyTyped(evt);
