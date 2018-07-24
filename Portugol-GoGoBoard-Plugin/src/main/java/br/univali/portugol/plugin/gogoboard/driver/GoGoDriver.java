@@ -249,7 +249,7 @@ public abstract class GoGoDriver {
      * br.univali.portugol.nucleo.bibliotecas.base.ErroExecucaoBiblioteca
      */
     protected void lancarExcecaoErroGoGo(Exception ex) throws ErroExecucaoBiblioteca {
-        Logger.getLogger(GoGoDriver.class.getName()).log(Level.SEVERE, null, ex);
+        //Logger.getLogger(GoGoDriver.class.getName()).log(Level.SEVERE, null, ex);
         throw new ErroExecucaoBiblioteca("Erro, GoGo Board está sendo usada por outro programa ou não está conectada.");
     }
 }
