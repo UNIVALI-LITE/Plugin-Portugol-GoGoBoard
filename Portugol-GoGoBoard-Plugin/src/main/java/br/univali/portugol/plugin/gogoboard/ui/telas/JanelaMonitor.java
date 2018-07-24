@@ -244,44 +244,34 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
         threadAtualizaTela = new Thread(new Runnable() {
             @Override
             public void run() {
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        labelGoGo.setIcon(iconeGoGoConectata);
-                    }
+                SwingUtilities.invokeLater(() -> {
+                    labelGoGo.setIcon(iconeGoGoConectata);
                 });
                 while (atualizar && dispositivoGoGo.isConectado()) {
                     try {
                         dispositivoGoGo.atualizarComponetes();
                         int i = 0;
-                        for (Component component : painelSensor.getComponents()) {
-                            if (component instanceof JProgressBar) {
-                                SwingUtilities.invokeLater(new progressBar(i, component));
+                        for (Component component1 : painelSensor.getComponents()) {
+                            if (component1 instanceof JProgressBar) {
+                                SwingUtilities.invokeLater(new progressBar(i, component1));
                                 i++;
                             }
                         }
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    labelIR.setText("Código  = " + dispositivoGoGo.getInfravermelho().getValor(false));
-                                } catch (ErroExecucaoBiblioteca ex) {
-                                    Logger.getLogger(JanelaMonitor.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                        SwingUtilities.invokeLater(() -> {
+                            try {
+                                labelIR.setText("Código  = " + dispositivoGoGo.getInfravermelho().getValor(false));
+                            } catch (ErroExecucaoBiblioteca ex) {
+                                Logger.getLogger(JanelaMonitor.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         });
-                        
                         Thread.sleep(100);
-                    } catch (ErroExecucaoBiblioteca | InterruptedException ex) {
+                    }catch (ErroExecucaoBiblioteca | InterruptedException ex) {
                         Logger.getLogger(JanelaMonitor.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 zerarBarraSensores();
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        labelGoGo.setIcon(iconeGoGoDesconectata);
-                    }
+                SwingUtilities.invokeLater(() -> {
+                    labelGoGo.setIcon(iconeGoGoDesconectata);
                 });
             }
         });
@@ -1353,7 +1343,7 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
             try {
                 if (botaoLedOn.isSelected()) {
                     botaoLedOn.setIcon(iconeLed_off);
-                    labelLed.setText("Desigar Led");
+                    labelLed.setText("Desligar Led");
                     dispositivoGoGo.getLedUsuario().controlarLed(1);
                 } else {
                     botaoLedOn.setIcon(iconeLed_on);
