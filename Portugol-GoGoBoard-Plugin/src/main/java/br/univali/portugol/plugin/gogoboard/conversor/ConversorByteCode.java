@@ -1,7 +1,11 @@
 package br.univali.portugol.plugin.gogoboard.conversor;
 
+import br.univali.ps.nucleo.Configuracoes;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -49,8 +53,9 @@ public class ConversorByteCode {
     public byte[] converterLogoParaByteCode(String logo) {
         byte[] byteCode = null;
         //TODO: Alterar para um caminho relativo
-        String caminho = "C:\\Users\\Ailton Cardoso Jr\\Documents\\NetBeansProjects\\Portugol - Novo\\Portugol-GoGoBoard-Plugin\\Portugol-GoGoBoard-Plugin\\src\\main\\resources\\br\\univali\\portugol\\plugin\\gogoboard\\compilador\\logoc.py";
-
+        
+        String caminho = Configuracoes.getInstancia().getDiretorioTemporario().getAbsolutePath() + "\\pluginPythonDependence\\logoc.py";        
+        
         // Monta a linha de comando com o arquivo e o argumento
         CommandLine cmdLine = new CommandLine("python");
         cmdLine.addArgument("\"" + caminho + "\"");
@@ -90,5 +95,6 @@ public class ConversorByteCode {
             bytecode[i] = Byte.valueOf(arrayString[i]);
         }
         return bytecode;
-    }
+    }    
+    
 }
