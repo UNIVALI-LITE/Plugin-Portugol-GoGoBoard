@@ -5,19 +5,45 @@
  */
 package br.univali.portugol.plugin.gogoboard.ui.telas;
 
+import br.univali.ps.ui.swing.ColorController;
+import br.univali.ps.ui.swing.Themeable;
+import br.univali.ps.ui.swing.weblaf.WeblafUtils;
+import br.univali.ps.ui.utils.WebConnectionUtils;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+
 /**
  *
  * @author Adson Esteves
  */
-public class TelaErroPythonFaltando extends javax.swing.JPanel {
+public class TelaErroPythonFaltando extends javax.swing.JPanel implements Themeable{
 
     /**
      * Creates new form TelaErroPythonFaltando
      */
     public TelaErroPythonFaltando() {
         initComponents();
+        buttonSite.setAction(new AbstractAction("Visitar Site") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WebConnectionUtils.abrirSite("https://www.python.org/getit/");
+            }
+        });
+        configurarCores();
     }
 
+    @Override
+    public void configurarCores() {
+        setBackground(ColorController.FUNDO_MEDIO);
+        labelTextInfo.setForeground(ColorController.COR_LETRA);
+        labelTextInfo.setBackground(ColorController.FUNDO_CLARO);
+        labelTitle.setForeground(ColorController.COR_LETRA);
+        if(WeblafUtils.weblafEstaInstalado())
+        {
+            WeblafUtils.configurarBotao(buttonSite, ColorController.AMARELO, ColorController.FUNDO_ESCURO, ColorController.COR_DESTAQUE, ColorController.COR_LETRA, 2, true);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,55 +53,60 @@ public class TelaErroPythonFaltando extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        webButton1 = new com.alee.laf.button.WebButton();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        buttonSite = new com.alee.laf.button.WebButton();
+        labelWarningIcon = new javax.swing.JLabel();
+        labelTextInfo = new javax.swing.JLabel();
+        labelTitle = new javax.swing.JLabel();
 
-        webButton1.setText("Ir para site");
+        buttonSite.setText("Ir para site");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/univali/portugol/plugin/gogoboard/imagens/big_warning.png"))); // NOI18N
+        labelWarningIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/univali/portugol/plugin/gogoboard/imagens/big_warning.png"))); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        labelTextInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTextInfo.setText("<html> <body> <div style='text-align: center'> Para que o código seja enviado à GogoBoard é necessário que a linguagem Python esteja instalada e sua pasta de instalação registrada no PATH do seu sistema. </div> <p><div style='text-align: center'> Você pode baixar o Python no site da linguagem apertando o botão abaixo. </div> <div style='text-align: center'> Não se esqueça de adicionar a pasta do Python ao PATH do seu sistema, apertando a opções durante a instalação! </div> </body> </html>");
+
+        labelTitle.setText("<html><body><div style='text-align: center; font-weight: bold; font-size: 12px'> Python não foi encontrado no seu computador! </div></html></body>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(labelWarningIcon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTextInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(webButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(118, 118, 118))
+                .addComponent(buttonSite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(93, 93, 93)
+                        .addComponent(labelWarningIcon))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(webButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelTextInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonSite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private com.alee.laf.button.WebButton webButton1;
+    private com.alee.laf.button.WebButton buttonSite;
+    private javax.swing.JLabel labelTextInfo;
+    private javax.swing.JLabel labelTitle;
+    private javax.swing.JLabel labelWarningIcon;
     // End of variables declaration//GEN-END:variables
 }

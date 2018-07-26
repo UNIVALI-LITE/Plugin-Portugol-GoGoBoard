@@ -52,8 +52,6 @@ public class ConversorByteCode {
      */
     public byte[] converterLogoParaByteCode(String logo) {
         byte[] byteCode = null;
-        //TODO: Alterar para um caminho relativo
-        
         String caminho = Configuracoes.getInstancia().getDiretorioTemporario().getAbsolutePath() + "\\pluginPythonDependence\\logoc.py";        
         
         // Monta a linha de comando com o arquivo e o argumento
