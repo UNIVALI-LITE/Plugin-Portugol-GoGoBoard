@@ -6,6 +6,7 @@ import br.univali.portugol.plugin.gogoboard.acoes.AcaoExibirMonitor;
 import br.univali.portugol.plugin.gogoboard.biblioteca.GoGoBoard;
 import br.univali.portugol.plugin.gogoboard.componetes.DispositivoGoGo;
 import br.univali.portugol.plugin.gogoboard.driver.GoGoDriver;
+import br.univali.ps.plugins.base.GerenciadorPlugins;
 import br.univali.ps.plugins.base.Plugin;
 import br.univali.ps.plugins.base.UtilizadorPlugins;
 import br.univali.ps.plugins.base.VisaoPlugin;
@@ -35,9 +36,12 @@ public final class GoGoBoardPlugin extends Plugin {
     @Override
     protected void inicializar(UtilizadorPlugins utilizador) {
         this.utilizador = utilizador;
-        this.utilizador.instalarAcaoPlugin(this, new AcaoExibirMonitor(this));
-        this.utilizador.instalarAcaoPlugin(this, new AcaoExibirLogo(this));
-        this.utilizador.instalarAcaoPlugin(this, new AcaoEnviarByteCode(this));
+//        this.utilizador.instalarAcaoPlugin(this, new AcaoExibirMonitor(this));
+//        this.utilizador.instalarAcaoPlugin(this, new AcaoExibirLogo(this));
+//        this.utilizador.instalarAcaoPlugin(this, new AcaoEnviarByteCode(this));
+        GerenciadorPlugins.getInstance().instalarAcaoPlugin(this, new AcaoExibirMonitor(this));
+        GerenciadorPlugins.getInstance().instalarAcaoPlugin(this, new AcaoExibirLogo(this));
+        GerenciadorPlugins.getInstance().instalarAcaoPlugin(this, new AcaoEnviarByteCode(this));
         this.utilizador.registrarBiblioteca(GoGoBoard.class);
         super.inicializar(utilizador);
     }
