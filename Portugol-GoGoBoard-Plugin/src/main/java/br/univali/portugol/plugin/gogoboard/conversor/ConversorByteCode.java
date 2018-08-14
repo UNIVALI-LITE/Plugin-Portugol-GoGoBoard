@@ -90,7 +90,7 @@ public class ConversorByteCode {
 
         // Transforma os valores em bytes e armazena no array de bytes, ignorando o ultimo valor (vazio " ")
         for (int i = 0; i < arrayString.length - 1; i++) {
-            bytecode[i] = Byte.valueOf(arrayString[i]);
+            bytecode[i] = (byte) (Integer.parseInt(arrayString[i]) & 255);
         }
         return bytecode;
     }    
