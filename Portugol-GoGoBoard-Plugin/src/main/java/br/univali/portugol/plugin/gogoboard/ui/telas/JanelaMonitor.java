@@ -297,13 +297,15 @@ public class JanelaMonitor extends javax.swing.JPanel implements Themeable {
      * Método para zerar as barras dos sensores.
      */
     private void zerarBarraSensores() {
-        for (Component component : painelSensor.getComponents()) {
-            if (component instanceof JProgressBar) {
-                JProgressBar pb = ((JProgressBar) component);
-                pb.setValue(0);
-                pb.setString(String.valueOf(0));
+        SwingUtilities.invokeLater(() -> {
+            for (Component component : painelSensor.getComponents()) {
+                if (component instanceof JProgressBar) {
+                    JProgressBar pb = ((JProgressBar) component);
+                    pb.setValue(0);
+                    pb.setString(String.valueOf(0));
+                }
             }
-        }
+        });        
     }
 
     /**
