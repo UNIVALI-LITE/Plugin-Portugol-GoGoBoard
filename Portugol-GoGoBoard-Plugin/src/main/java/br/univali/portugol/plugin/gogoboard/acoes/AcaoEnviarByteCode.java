@@ -143,7 +143,7 @@ public class AcaoEnviarByteCode extends AbstractAction {
         String caminho = "br/univali/portugol/plugin/gogoboard/compilador";
 
         File diretorioTemporario = new File(Configuracoes.getInstancia().getDiretorioTemporario().getAbsolutePath(), "pluginPythonDependence");
-        String[] arquivos = {"logoc.py", "parser.out", "parsetab.py", "ply/lex.py", "ply/yacc.py"};
+        String[] arquivos = {"logoc.py", "parser.out", "parsetab.py", "ply/lex.py", "ply/yacc.py", "ply/__init__.py"};
 
         try {
             for (String arquivo : arquivos) {                

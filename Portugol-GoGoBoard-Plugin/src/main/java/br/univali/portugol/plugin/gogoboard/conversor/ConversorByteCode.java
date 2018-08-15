@@ -6,8 +6,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
@@ -52,11 +55,12 @@ public class ConversorByteCode {
      */
     public byte[] converterLogoParaByteCode(String logo) {
         byte[] byteCode = null;
-        String caminho = Configuracoes.getInstancia().getDiretorioTemporario().getAbsolutePath() + "\\pluginPythonDependence\\logoc.py";        
+        File caminho = new File(new File(Configuracoes.getInstancia().getDiretorioTemporario(), "pluginPythonDependence"), "logoc.py");
+        
         
         // Monta a linha de comando com o arquivo e o argumento
         CommandLine cmdLine = new CommandLine("python");
-        cmdLine.addArgument("\"" + caminho + "\"");
+        cmdLine.addArgument(caminho.getAbsolutePath());
         cmdLine.addArgument(logo);
         // Cria o Executor e o StreamHandler para capturar a saida e colocar no streamSaida
         ByteArrayOutputStream streamSaida = new ByteArrayOutputStream();
@@ -68,7 +72,7 @@ public class ConversorByteCode {
             System.err.println("SAIDA COMPILADOR:\n\n" + streamSaida.toString());
             byteCode = montarArrayBytecode(streamSaida.toString());
         } catch (IOException ex) {
-            System.err.println("Erro ao compilar o bytecode");
+            System.err.println("Erro ao compilar o bytecode " + streamSaida.toString());
             Logger.getLogger(ConversorByteCode.class.getName()).log(Level.SEVERE, null, ex);
         }
         return byteCode;
@@ -79,18 +83,23 @@ public class ConversorByteCode {
      * resultante da compilação.
      */
     private static byte[] montarArrayBytecode(String outputStream) {
-        // Quebra a String após o 'Raw byte code'
-        String[] stringSplit = outputStream.split("Raw byte code: \r\r\n");
-        // Pega a segunda parte, ou seja o byte code
-        String rawByteCode = stringSplit[1];
+        // Quebra a String após o 'Raw byte code'ontarArrayBytecode(ConversorByteCode.java:86
+        Pattern pattern = Pattern.compile("([0-9]+)");
+        Matcher matcher = pattern.matcher(outputStream);
+        
+        List<String> arrayString = new ArrayList<>();
         // Quebra o raw byte code por virgula e armazena num array de String
-        String[] arrayString = rawByteCode.split(Pattern.quote(", "));
+        while (matcher.find())
+        {
+            String theByte = matcher.group();
+            arrayString.add(theByte);
+        }
 
-        byte[] bytecode = new byte[arrayString.length - 1];
+        byte[] bytecode = new byte[arrayString.size() - 1];
 
         // Transforma os valores em bytes e armazena no array de bytes, ignorando o ultimo valor (vazio " ")
-        for (int i = 0; i < arrayString.length - 1; i++) {
-            bytecode[i] = (byte) (Integer.parseInt(arrayString[i]) & 255);
+        for (int i = 0; i < arrayString.size() - 1; i++) {
+            bytecode[i] = (byte) (Integer.parseInt(arrayString.get(i)) & 255);
         }
         return bytecode;
     }    
