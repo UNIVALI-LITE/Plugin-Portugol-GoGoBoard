@@ -1,0 +1,12 @@
+{
+    "nome": "GoGoBoard",
+    "versao": "1.0.0",
+    "classe": "br.univali.portugol.plugin.gogoboard.GoGoBoardPlugin",
+    "descricao": "Plugin para utilizar com a GoGoBoard",
+    "autores": [
+        {
+            "nome": "Ailton Cardoso Jr",
+            "email": "ailtoncardosojr@edu.univali.br"
+        }
+    ]
+}
