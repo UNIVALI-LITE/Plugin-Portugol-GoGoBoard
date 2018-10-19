@@ -82,7 +82,7 @@ public class AcaoEnviarByteCode extends AbstractAction {
         indicadorProgresso.add(painel);        
         indicadorProgresso.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         indicadorProgresso.pack();
-        indicadorProgresso.setLocationRelativeTo(Lancador.getJFrame());
+        indicadorProgresso.setLocationRelativeTo(Lancador.getInstance().getJFrame());
     }
     
     private static Icon carregarIcone() {
@@ -114,7 +114,7 @@ public class AcaoEnviarByteCode extends AbstractAction {
         }
         else{
             TelaCustomBorder tela = new TelaCustomBorder(new TelaErroPythonFaltando(), "Erro Python Faltando");
-            tela.setLocationRelativeTo(Lancador.getJFrame());
+            tela.setLocationRelativeTo(Lancador.getInstance().getJFrame());
             tela.setVisible(true);
         }
         
