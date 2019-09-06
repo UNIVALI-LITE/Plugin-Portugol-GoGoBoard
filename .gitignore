@@ -1,7 +1,28 @@
-/Portugol-GoGoBoard-Plugin/.nb-gradle/
-/Portugol-GoGoBoard-Plugin/build/
-/Portugol-GoGoBoard-Plugin/bin/
-/Portugol-GoGoBoard-Plugin/.settings
-/Portugol-GoGoBoard-Plugin/.classpath
-/Portugol-GoGoBoard-Plugin/.project
-Portugol-GoGoBoard-Plugin/\.gradle/
+.nb-gradle/
+build/
+bin/
+.settings
+.classpath
+.project
+.gradle/
+.vscode/
+out/
+src/test/tmp
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+#IntelliJ IDEA Files
+.idea/
+*.iml
+
+ide/src/main/assets/plugins/
+
